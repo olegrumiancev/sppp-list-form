@@ -59,19 +59,7 @@
     office-ui-fabric-core "9.1.0"
     tslib "~1.8.0"
 
-"@olegrumiancev/spfx-controls-react@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@olegrumiancev/spfx-controls-react/-/spfx-controls-react-1.3.0.tgz#0cc2e53e03e4c0ea1e9304236888778359984def"
-  dependencies:
-    "@pnp/common" "^1.0.1"
-    "@pnp/logging" "^1.0.1"
-    "@pnp/odata" "^1.0.1"
-    "@pnp/sp" "^1.0.1"
-    "@types/applicationinsights-js" "1.0.5"
-    applicationinsights-js "1.0.14"
-    lodash "^4.17.4"
-
-"@pnp/common@^1.0.1", "@pnp/common@^1.0.4":
+"@pnp/common@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@pnp/common/-/common-1.0.4.tgz#ab5d70a08f5cd7e32efe65face7cc60f380bc430"
   dependencies:
@@ -79,35 +67,23 @@
     adal-angular "1.0.17"
     tslib "1.9.0"
 
-"@pnp/logging@^1.0.1", "@pnp/logging@^1.0.4":
+"@pnp/logging@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@pnp/logging/-/logging-1.0.4.tgz#f32ebaaff5521742b527e0f32a8f8ae89bed11b4"
   dependencies:
     tslib "1.9.0"
 
-"@pnp/odata@^1.0.1", "@pnp/odata@^1.0.4":
+"@pnp/odata@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@pnp/odata/-/odata-1.0.4.tgz#05ee507aba2e3e7e0f0e4f2e667ac179db61697c"
   dependencies:
     tslib "1.9.0"
 
-"@pnp/sp@^1.0.1", "@pnp/sp@^1.0.4":
+"@pnp/sp@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@pnp/sp/-/sp-1.0.4.tgz#dd7fc10eb25b61a0313dd64b392da98dc7eab2af"
   dependencies:
     tslib "1.9.0"
-
-"@pnp/spfx-controls-react@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@pnp/spfx-controls-react/-/spfx-controls-react-1.3.0.tgz#4cc4361ff3c60f52c79072950abbf1a9b5c11a73"
-  dependencies:
-    "@pnp/common" "^1.0.1"
-    "@pnp/logging" "^1.0.1"
-    "@pnp/odata" "^1.0.1"
-    "@pnp/sp" "^1.0.1"
-    "@types/applicationinsights-js" "1.0.5"
-    applicationinsights-js "1.0.14"
-    lodash "^4.17.4"
 
 "@types/adal-angular@1.0.0":
   version "1.0.0"
@@ -122,10 +98,6 @@
 "@types/angular@*":
   version "1.6.43"
   resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.43.tgz#6235ef416053a86302970717510a936d889cbb9a"
-
-"@types/applicationinsights-js@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@types/applicationinsights-js/-/applicationinsights-js-1.0.5.tgz#b0bab755e67ed584ac3bf75869fc12589a338a2c"
 
 "@types/bluebird@*", "@types/bluebird@^3.0.35", "@types/bluebird@^3.5.8":
   version "3.5.20"
@@ -474,10 +446,6 @@ append-buffer@^1.0.2:
   resolved "https://registry.yarnpkg.com/append-buffer/-/append-buffer-1.0.2.tgz#d8220cf466081525efea50614f3de6514dfa58f1"
   dependencies:
     buffer-equal "^1.0.0"
-
-applicationinsights-js@1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/applicationinsights-js/-/applicationinsights-js-1.0.14.tgz#5d06481080bcdf52e3297446ee822bf16d49cf36"
 
 aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
@@ -1371,6 +1339,10 @@ copy-descriptor@^0.1.0:
 core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
+
+core-js@^2.5.5:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -5860,9 +5832,9 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
-sp-build-tasks@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/sp-build-tasks/-/sp-build-tasks-2.0.1.tgz#de2c6c3321c6703aa33e6ad3848dd0d69974f663"
+sp-build-tasks@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/sp-build-tasks/-/sp-build-tasks-2.0.2.tgz#d9da1e853f209db35e829dab04d5f590a5dc24dd"
   dependencies:
     awesome-typescript-loader "5.0.0"
     cache-loader "^1.2.2"

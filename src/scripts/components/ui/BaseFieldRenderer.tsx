@@ -1,5 +1,5 @@
-import { IFieldProps, FormMode } from "../../interfaces";
 import * as React from "react";
+import { IFieldProps, FormMode } from "../../interfaces";
 
 export default class BaseFieldRenderer extends React.Component<IFieldProps, {}> {
   public constructor(props) {

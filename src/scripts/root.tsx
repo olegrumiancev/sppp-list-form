@@ -1,4 +1,3 @@
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import ListForm from './components/containers/ListForm';
 import { Provider } from 'react-redux';

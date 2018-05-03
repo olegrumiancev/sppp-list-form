@@ -1,7 +1,5 @@
 /// <reference path="../../../node_modules/@types/sharepoint/index.d.ts" />
-require('core-js/shim');
-require('es6-set/implement');
-
+import * as React from 'react';
 import ActionTypes from '../actionTypes';
 import { IFieldInfo, IListFormState, FormAction, FormMode, IFieldUpdate } from '../interfaces';
 import { Action, ActionCreator, Dispatch, AnyAction } from 'redux';
@@ -9,7 +7,6 @@ import { ThunkAction } from 'redux-thunk';
 import { sp } from '@pnp/sp';
 import BaseFieldRenderer from '../components/ui/BaseFieldRenderer';
 import { FieldTextRenderer, FieldUserRenderer } from '../components/containers/RendererContainers';
-import * as React from 'react';
 
 export const changeSelection: ActionCreator<Action> = (selectedItemIndex: number) => ({
   type: ActionTypes.CLICK_ITEM,

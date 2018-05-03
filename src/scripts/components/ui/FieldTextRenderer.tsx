@@ -1,7 +1,7 @@
+import * as React from "react";
 import { IFieldProps, FormMode } from "../../interfaces";
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { Label } from 'office-ui-fabric-react/lib/Label';
-import * as React from "react";
 import BaseFieldRenderer from "./BaseFieldRenderer";
 
 export default class FieldTextRenderer extends BaseFieldRenderer {

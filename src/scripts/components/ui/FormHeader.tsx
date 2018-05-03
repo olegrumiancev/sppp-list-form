@@ -1,6 +1,6 @@
+import * as React from "react";
 import { FormMode, IListFormProps } from "../../interfaces";
 import { Label } from 'office-ui-fabric-react/lib/Label';
-import * as React from "react";
 
 export default class FieldTextRenderer extends React.Component<IListFormProps, {}> {
   public constructor(props) {

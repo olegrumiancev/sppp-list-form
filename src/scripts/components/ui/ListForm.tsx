@@ -1,4 +1,3 @@
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Spinner } from 'office-ui-fabric-react/lib/Spinner';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';

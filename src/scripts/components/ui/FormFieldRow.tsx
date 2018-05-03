@@ -1,4 +1,3 @@
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Label } from 'office-ui-fabric-react/lib/Label';
 import { IFieldProps } from '../../interfaces';
