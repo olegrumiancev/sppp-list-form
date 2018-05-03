@@ -8,10 +8,14 @@ import { Reducer, Action, combineReducers, AnyAction } from 'redux';
 const CurrentMode: Reducer<number> = (state: number = null, action: FormAction) => {
   switch (action.type) {
     case ActionTypes.GET_CURRENT_MODE:
+      break;
+    case ActionTypes.SET_CURRENT_MODE:
       return action.payload as number;
     default:
-      return state;
+      break;
   }
+
+  return state;
 };
 
 const Fields: Reducer<IFieldInfo[]> = (state: IFieldInfo[] = [], action: FormAction) => {
@@ -68,15 +72,6 @@ const SpWebUrl: Reducer<string> = (state: string = null, action: FormAction) => 
   }
 }
 
-const Digest: Reducer<string> = (state: string = null, action: FormAction) => {
-  switch (action.type) {
-    case ActionTypes.GET_FORM_DIGEST:
-      return document.getElementById('__REQUESTDIGEST').getAttribute('value') as string;
-    default:
-      return state;
-  }
-}
-
 const IsLoading: Reducer<boolean> = (state: boolean = false, action: FormAction) => {
   switch (action.type) {
     case ActionTypes.SET_LOADING:
@@ -92,6 +87,5 @@ export default combineReducers({
   CurrentItemId,
   CurrentMode,
   SpWebUrl,
-  Digest,
   IsLoading
 });

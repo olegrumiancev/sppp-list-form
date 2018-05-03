@@ -8,24 +8,23 @@ import { sp } from '@pnp/sp';
 import BaseFieldRenderer from '../components/ui/BaseFieldRenderer';
 import { FieldTextRenderer, FieldUserRenderer } from '../components/containers/RendererContainers';
 
-export const changeSelection: ActionCreator<Action> = (selectedItemIndex: number) => ({
-  type: ActionTypes.CLICK_ITEM,
-  payload: selectedItemIndex
-});
-
-export const setItems: ActionCreator<Action> = (items: IFieldInfo[]) => ({
-  type: ActionTypes.SET_ITEMS,
-  payload: items
-});
-
 export const setLoading: ActionCreator<Action> = (isLoading: boolean) => ({
   type: ActionTypes.SET_LOADING,
   payload: isLoading
 });
 
-export const getFormDigest: ActionCreator<Action> = () => ({
-  type: ActionTypes.GET_FORM_DIGEST
-});
+export const setCurrentMode:ActionCreator<ThunkAction<Promise<void>, IListFormState, void>> = () => {
+  return async (dispatch: Dispatch<FormAction, IListFormState>, getState: () => IListFormState): Promise<void> => {
+    dispatch({ type: ActionTypes.SET_CURRENT_MODE, payload: FormMode.Edit });
+
+    let state = getState();
+    let newFieldInfos = state.Fields.map(f => {
+      f.FieldRenderingComponent = getFieldRenderingControl(state, f, null, null, null);
+      return f;
+    });
+    dispatch({type: ActionTypes.SET_FORM_FIELDS, payload: newFieldInfos});
+  }
+}
 
 export const saveFormData: ActionCreator<ThunkAction<Promise<void>, IListFormState, void>> = () => {
   return async (dispatch: Dispatch<FormAction, IListFormState>, getState: () => IListFormState): Promise<void> => {
@@ -45,7 +44,7 @@ export const setFieldValue: ActionCreator<Action> = (fieldInternalName: string, 
 export const loadItem: ActionCreator<ThunkAction<Promise<void>, IListFormState, void>> = () => {
   return async (dispatch: Dispatch<FormAction, IListFormState>, getState: () => IListFormState): Promise<void> => {
     try {
-      dispatch({ type: ActionTypes.SET_LOADING, payload: true });
+      dispatch({type: ActionTypes.SET_LOADING, payload: true});
       const state = getState();
       if (state.CurrentListId == null) {
         handleError("ListID is not specified.", dispatch);
@@ -57,7 +56,7 @@ export const loadItem: ActionCreator<ThunkAction<Promise<void>, IListFormState, 
         return;
       }
 
-      console.log(state.SpWebUrl);
+      console.log(`current web url: ${state.SpWebUrl}`);
 
       initPnp(state.SpWebUrl);
 
@@ -97,7 +96,12 @@ const initPnp = (webUrl: string) => {
   });
 };
 
+// const loadItemInternal = (dispatch: Dispatch<FormAction, IListFormState>, getState: () => IListFormState) => {
+
+// }
+
 const getFieldRenderingControl = (state: IListFormState, fieldMetadata: IFieldInfo, item: any, className: string, cssProps: React.CSSProperties): JSX.Element => {
+  console.log(`in get rendering control for ${fieldMetadata.InternalName}`);
   if (item != null) {
     fieldMetadata.FormFieldValue = item[fieldMetadata.InternalName];
   }
@@ -139,5 +143,5 @@ const setItemState = (state: IListFormState, listFields: any[], item: any, dispa
 
 const handleError = (msg: string, dispatch: any) => {
   console.error(msg);
-  dispatch({ type: ActionTypes.SET_LOADING, payload: false });
+  dispatch({type: ActionTypes.SET_LOADING, payload: false});
 }

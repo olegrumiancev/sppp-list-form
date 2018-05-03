@@ -28,13 +28,12 @@ export interface IListFormState {
     CurrentItemId?: number;
     SpWebUrl?: string;
     CurrentMode: number;
-
-    Digest?: string;
     IsLoading?: boolean;
 }
 
 export interface IListFormProps extends IListFormState {
   loadItem: ActionCreator<Action>;
+  openEditMode: ActionCreator<Action>;
   closeForm: ActionCreator<Action>;
   saveFormData: ActionCreator<Action>;
 }

@@ -34,6 +34,7 @@ export class RootInternal extends React.Component<{}, { appStore: Store<IListFor
   }
 
   private getFormMode = () => {
+    console.log(`in getFormMode`);
     let fm = getQueryString(null, "fm");
     if (fm != null) {
         return parseInt(fm);

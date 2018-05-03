@@ -16,8 +16,7 @@ export default class ListForm extends React.Component<IListFormProps, void> {
   }
 
   public render() {
-    let commandBarItems = [
-      {
+    let commandBarItemSave = {
         className: "ms-bgColor-neutral",
         key: "save",
         name: "Save",
@@ -27,8 +26,19 @@ export default class ListForm extends React.Component<IListFormProps, void> {
         onClick: () => {
           this.props.saveFormData();
         }
-      }
-    ];
+      };
+
+      let commandBarItemEdit = {
+        className: "ms-bgColor-neutral",
+        key: "edit",
+        name: "Edit",
+        iconProps: {
+          iconName: 'Edit'
+        },
+        onClick: () => {
+          this.props.openEditMode();
+        }
+      };
 
     //console.log(`fields from render:`);
     //console.log(this.props.Fields);
@@ -40,7 +50,7 @@ export default class ListForm extends React.Component<IListFormProps, void> {
       <div className="formContainer">
         <FormHeader {...this.props} />
         <CommandBar isSearchBoxVisible={false}
-          items={this.props.CurrentMode == FormMode.Display ? [] : commandBarItems}
+          items={this.props.CurrentMode == FormMode.Display ? [commandBarItemEdit] : [commandBarItemSave]}
           farItems={[
             {
               className: "ms-bgColor-neutral",
