@@ -1,7 +1,7 @@
 import * as React from "react";
-import { IFieldProps, FormMode } from "../../interfaces";
+import { IFieldProps, FormMode, IFieldInfo } from "../../interfaces";
 
-export default class BaseFieldRenderer extends React.Component<IFieldProps, {}> {
+export default class BaseFieldRenderer extends React.Component<IFieldProps, any> {
   public constructor(props) {
     super(props);
 
@@ -29,5 +29,9 @@ export default class BaseFieldRenderer extends React.Component<IFieldProps, {}> 
 
   protected renderDispForm() {
     return (<div>Not implemented, field type: {this.props.Type}, form mode: disp</div>);
+  }
+
+  protected isValid(): boolean {
+    return true;
   }
 }

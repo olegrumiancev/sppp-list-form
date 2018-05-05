@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { sp } from '@pnp/sp';
+import { setupPnp } from './utils/odata';
 import ListForm from './components/containers/ListForm';
 import { Provider } from 'react-redux';
 import appStoreCreator from './appStore';
 import { IListFormState, FormMode, getQueryString, executeSPQuery } from './interfaces';
 import { Store } from 'redux';
+import { AnyAction } from 'redux';
 
 export class RootInternal extends React.Component<{}, { appStore: Store<IListFormState>}> {
   private localContext = null;
@@ -21,7 +24,10 @@ export class RootInternal extends React.Component<{}, { appStore: Store<IListFor
     await executeSPQuery(this.localContext);
     let webUrl = currentWeb.get_url();
 
-    let appStore = appStoreCreator({
+    setupPnp(webUrl);
+
+    let appStore: Store<IListFormState, AnyAction> = appStoreCreator({
+        pnpSPRest: sp,
         Fields: [],
         CurrentMode: this.getFormMode(),
         CurrentListId: this.getCurrentListId(),
@@ -34,7 +40,6 @@ export class RootInternal extends React.Component<{}, { appStore: Store<IListFor
   }
 
   private getFormMode = () => {
-    console.log(`in getFormMode`);
     let fm = getQueryString(null, "fm");
     if (fm != null) {
         return parseInt(fm);

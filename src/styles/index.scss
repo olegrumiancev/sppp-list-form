@@ -15,12 +15,14 @@
 
   .rowLabel {
     display: inline-block;
+    font-weight: bold;
     min-width: 340px;
-    padding: 5px;
   }
 
   .rowField {
-    display: inline-block;
+    padding: 5px;
+    display: block;
+    width: 100%;
   }
 }
 

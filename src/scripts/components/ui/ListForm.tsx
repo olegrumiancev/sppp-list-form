@@ -17,28 +17,37 @@ export default class ListForm extends React.Component<IListFormProps, void> {
 
   public render() {
     let commandBarItemSave = {
-        className: "ms-bgColor-neutral",
-        key: "save",
-        name: "Save",
-        iconProps: {
-          iconName: 'Save'
-        },
-        onClick: () => {
-          this.props.saveFormData();
-        }
-      };
+      className: "ms-bgColor-neutral",
+      key: "save",
+      name: "Save",
+      iconProps: {
+        iconName: 'Save'
+      },
+      onClick: () => {
+        this.props.saveFormData();
+      }
+    };
 
-      let commandBarItemEdit = {
-        className: "ms-bgColor-neutral",
-        key: "edit",
-        name: "Edit",
-        iconProps: {
-          iconName: 'Edit'
-        },
-        onClick: () => {
-          this.props.openEditMode();
-        }
-      };
+    let commandBarItemEdit = {
+      className: "ms-bgColor-neutral",
+      key: "edit",
+      name: "Edit",
+      iconProps: {
+        iconName: 'Edit'
+      },
+      onClick: () => {
+        this.props.openEditMode();
+      }
+    };
+
+    let items = this.props.CurrentMode == FormMode.Display ? [commandBarItemEdit] : [commandBarItemSave];
+    if (this.props.IsSaving) {
+      let leftItems = [...items, {
+        iconProps: {iconName: 'Acccept'},
+        name: 'Saving...',
+        key: 'Saving'
+      }];
+    }
 
     //console.log(`fields from render:`);
     //console.log(this.props.Fields);
@@ -50,7 +59,7 @@ export default class ListForm extends React.Component<IListFormProps, void> {
       <div className="formContainer">
         <FormHeader {...this.props} />
         <CommandBar isSearchBoxVisible={false}
-          items={this.props.CurrentMode == FormMode.Display ? [commandBarItemEdit] : [commandBarItemSave]}
+          items={items}
           farItems={[
             {
               className: "ms-bgColor-neutral",

@@ -1,21 +1,14 @@
-require('es6-set/implement');
-// import * as React from "react";
 import { applyMiddleware, createStore, Middleware, MiddlewareAPI, Store, StoreCreator, AnyAction } from 'redux';
-// import { Action } from 'redux-actions';
+import { SPRest } from '@pnp/sp';
 import thunk from 'redux-thunk';
 import appReducer from './reducers';
 import { IListFormState, FormAction, IFieldInfo } from './interfaces';
 
-// export const appStore: Store<AppState> = createStore(appReducer, applyMiddleware(thunk));
-
-// Force cast of generic S to my AppState
-// tslint:disable-next-line:no-any
 function isApi(m: any): m is MiddlewareAPI<IListFormState> {
   return true;
 }
 
-export type MiddlewareFunction =
-(api: MiddlewareAPI<IListFormState>, next: (action: FormAction) => FormAction, action: FormAction) => FormAction;
+export type MiddlewareFunction = (api: MiddlewareAPI<IListFormState>, next: (action: FormAction) => FormAction, action: FormAction) => FormAction;
 
 export function handleAction(f: MiddlewareFunction): Middleware {
   return <S>(api: MiddlewareAPI<S>) => next => action => {
@@ -34,19 +27,17 @@ export function handleAction(f: MiddlewareFunction): Middleware {
 
 export function consoleMessages(): Middleware {
   return handleAction((api, next, action) => {
-    return next(action);
+    //return next(action);
 
-    // let result;
+    console.groupCollapsed(`dispatching action => ${action.type}`);
+    let result = next(action);
 
-    // console.groupCollapsed(`dispatching action => ${action.type}`);
-    // result = next(action);
+    const state = api.getState();
+    console.log(state);
 
-    // const state = api.getState();
-    // console.log(JSON.stringify(state));
+    console.groupEnd();
 
-    // console.groupEnd();
-
-    // return result;
+    return result;
   });
 }
 

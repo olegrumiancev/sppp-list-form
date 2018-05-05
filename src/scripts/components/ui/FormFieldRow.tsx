@@ -12,10 +12,14 @@ export default class FormFieldRow extends React.Component<IFieldProps, void> {
     return (
       <div className="formRow">
         <div className="rowLabel">
-          <Label>{this.props.Title}</Label>
+          <Label>
+            {this.props.Title}
+            {this.props.IsRequired ? <span style={{color: "red"}}> *</span> : null}
+          </Label>
         </div>
         <div className="rowField">
-          {this.props.FieldRenderingComponent}
+          {/*this.props.FieldRenderingComponent*/}
+          {this.props.resolveFieldRenderingControl(this.props, null, null)}
         </div>
       </div>
     )}

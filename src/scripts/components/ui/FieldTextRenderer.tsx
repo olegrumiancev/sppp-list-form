@@ -23,6 +23,6 @@ export default class FieldTextRenderer extends BaseFieldRenderer {
   }
 
   private renderNewOrEditForm() {
-    return (<TextField onChanged={(newValue) => this.props.saveFieldData(this.props.InternalName, newValue)} value={this.props.FormFieldValue} />);
+    return (<TextField onChanged={(newValue) => this.props.saveFieldData(this.props.InternalName, newValue)} value={this.props.FormFieldValue == null ? "" : this.props.FormFieldValue} />);
   }
 }

@@ -1,4 +1,6 @@
 import { ActionCreator, Action } from "redux";
+import { SPRest } from "@pnp/sp";
+import { IPersonaProps } from "office-ui-fabric-react/lib/Persona";
 
 export interface IFormMode {
   New: number,
@@ -13,6 +15,7 @@ export const FormMode: IFormMode = {
 export interface IFieldInfo {
   Title: string;
   InternalName: string;
+  EntityPropertyName: string;
   IsMulti: boolean;
   IsHidden: boolean;
   IsRequired: boolean;
@@ -20,6 +23,7 @@ export interface IFieldInfo {
   Type: string;
   Description: string;
   FieldRenderingComponent: JSX.Element;
+  Choices?: string[];
 }
 
 export interface IListFormState {
@@ -29,6 +33,8 @@ export interface IListFormState {
     SpWebUrl?: string;
     CurrentMode: number;
     IsLoading?: boolean;
+    IsSaving?: boolean;
+    pnpSPRest?: SPRest;
 }
 
 export interface IListFormProps extends IListFormState {
@@ -40,6 +46,8 @@ export interface IListFormProps extends IListFormState {
 
 export interface IFieldProps extends IFieldInfo {
   CurrentMode: number;
+  pnpSPRest: SPRest;
+  resolveFieldRenderingControl?(fieldProps: IFieldProps, className: string, cssProps: React.CSSProperties): JSX.Element;
   saveFieldData?(fieldInternalName: string, newValue: any): void;
 }
 
@@ -50,7 +58,13 @@ export interface IFieldUpdate {
 
 export class FormAction implements Action {
     public type: any;
-    public payload: number | string | boolean | IFieldInfo[] | IFieldInfo | IFieldUpdate ;
+    public payload: number | string | boolean | IFieldInfo[] | IFieldInfo | IFieldUpdate | SPRest ;
+}
+
+export interface IPeoplePickerState {
+  peopleList: IPersonaProps[];
+  mostRecentlyUsed: IPersonaProps[];
+  currentSelectedItems: any[];
 }
 
 export const getQueryString = (url, field) => {

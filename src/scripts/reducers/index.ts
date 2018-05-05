@@ -1,9 +1,8 @@
-require('core-js/shim');
-require('es6-set/implement');
 import { IListFormState, IFieldInfo, FormAction, IFieldUpdate } from '../interfaces';
 import ActionTypes from '../actionTypes';
 import { ThunkAction } from 'redux-thunk';
 import { Reducer, Action, combineReducers, AnyAction } from 'redux';
+import { SPRest, sp } from '@pnp/sp';
 
 const CurrentMode: Reducer<number> = (state: number = null, action: FormAction) => {
   switch (action.type) {
@@ -54,22 +53,17 @@ const CurrentItemId: Reducer<number> = (state: number = null, action: FormAction
   }
 };
 
-const SpListTitle: Reducer<string> = (state: string = null, action: FormAction) => {
-  switch (action.type) {
-    case ActionTypes.SET_LIST_TITLE:
-      return action.payload as string;
-    default:
-      return state;
-  }
-};
+// const SpListTitle: Reducer<string> = (state: string = null, action: FormAction) => {
+//   switch (action.type) {
+//     case ActionTypes.SET_LIST_TITLE:
+//       return action.payload as string;
+//     default:
+//       return state;
+//   }
+// };
 
 const SpWebUrl: Reducer<string> = (state: string = null, action: FormAction) => {
-  switch (action.type) {
-    case ActionTypes.SET_LIST_TITLE:
-      return action.payload as string;
-    default:
-      return state;
-  }
+  return state;
 }
 
 const IsLoading: Reducer<boolean> = (state: boolean = false, action: FormAction) => {
@@ -81,11 +75,31 @@ const IsLoading: Reducer<boolean> = (state: boolean = false, action: FormAction)
   }
 }
 
+const IsSaving: Reducer<boolean> = (state: boolean = false, action: FormAction) => {
+  switch (action.type) {
+    case ActionTypes.SET_SAVING:
+      return action.payload as boolean;
+    default:
+      return state;
+  }
+}
+
+const pnpSPRest: Reducer<SPRest> = (state: SPRest = sp, action: FormAction) => {
+  switch (action.type) {
+    case ActionTypes.SET_PNP_CLIENT:
+      return action.payload as SPRest;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   Fields,
   CurrentListId,
   CurrentItemId,
   CurrentMode,
   SpWebUrl,
-  IsLoading
+  IsLoading,
+  IsSaving,
+  pnpSPRest
 });
