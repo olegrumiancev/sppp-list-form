@@ -43,6 +43,7 @@ export default class FieldChoiceRenderer extends BaseFieldRenderer {
         multiSelect={this.props.IsMulti}
         onChanged={(newValue) => this.saveFieldDataInternal(newValue)}
         options={this.props.Choices.map(c => ({key: c, text: c, selected: (this.state.selectedItems as string[]).includes(c)}))}
+        placeHolder={this.props.IsMulti ? "Select options" : "Select an option"}
       />
     );
   }

@@ -85,6 +85,10 @@ export default class FieldUserRenderer extends BaseFieldRenderer {
         onValidateInput={this.validateInput}
         removeButtonAriaLabel={'Remove'}
         onChange={this.onItemsChange}
+        searchingText={"Searching..."}
+        inputProps={{
+          placeholder: "Enter a name or email address"
+        }}
         resolveDelay={300}
       />
     </div>);
